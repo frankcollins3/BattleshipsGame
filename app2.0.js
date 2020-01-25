@@ -38,6 +38,15 @@ var shipsArray3 = [
 var html = '';
 var shipsArray = [];
 var seconds = 120;
+var kaboom = document.getElementById('kaboom');
+var resBut = document.getElementById('reset');
+var message = document.getElementById('message');
+var rows = document.getElementsByTagName('tr');
+var timerMessage = document.getElementById('timer2');
+var tds = document.getElementsByTagName('td');
+var hits = 0;
+var clicks = 0;
+var ti;
 
 function getRandomArray() {
     let random = Math.floor(Math.random() * 3) + 1;
@@ -124,18 +133,6 @@ function timer() {
 }
 
 firstGame();
-
-//UCHWYTY
-
-var kaboom = document.getElementById('kaboom');
-var resBut = document.getElementById('reset');
-var message = document.getElementById('message');
-var rows = document.getElementsByTagName('tr');
-var timerMessage = document.getElementById('timer2');
-var tds = document.getElementsByTagName('td');
-var hits = 0;
-var clicks = 0;
-var ti;
 
 //PODPIĘCIE FUNKCJI URUCHMIANEJ PO KLIKNIĘCIU W KOMÓRKĘ TABELI
 
