@@ -162,11 +162,6 @@ function onClick() {
             }
         },150);
     }
-    if (hits === 16) {
-        message.innerText = 'Już tylko jedno trafienie dzieli Cię od wygranej!';
-    } else {
-        message.innerText = 'Brakuje Ci jeszcze '+(17-hits)+' trafień do wygranej...';
-    };
 
     let td = this;
     td.dataset.hit === 'true';
@@ -176,6 +171,12 @@ function onClick() {
     } else {
         td.innerText = '•';
     }
+
+    if (hits === 16) {
+        message.innerText = 'Już tylko jedno trafienie dzieli Cię od wygranej!';
+    } else {
+        message.innerText = 'Brakuje Ci jeszcze '+(17-hits)+' trafień do wygranej...';
+    };
 
     clicks = clicks+1;
     if (clicks === 1) {
