@@ -1,0 +1,31 @@
+* {
+    margin: 15px auto;
+    border-collapse: collapse;
+}
+#battleships td {
+    border: 1px solid black;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+#kaboom {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 1px;
+    top: -13px;
+}
+.buttonDiv {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+#message {
+    margin: 0 auto;
+    padding-top: 20px;
+    text-align: center;
+    height: 80px;
+    width: 250px;
+}
