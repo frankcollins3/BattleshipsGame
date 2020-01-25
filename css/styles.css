@@ -1,6 +1,7 @@
 * {
     margin: 15px auto;
     border-collapse: collapse;
+    font-family: 'Ubuntu', sans-serif;
 }
 #battleships td {
     border: 1px solid black;
@@ -21,11 +22,26 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 #message {
-    margin: 0 auto;
-    padding-top: 20px;
-    text-align: center;
-    height: 80px;
+    height: 100px;
     width: 250px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#timer {
+    width: 250px;
+    height: 60px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#reset {
+    margin: 0;
+    padding: 10px 20px;
+
 }

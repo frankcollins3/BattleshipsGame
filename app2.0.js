@@ -37,6 +37,7 @@ var shipsArray3 = [
 
 var html = '';
 var shipsArray = [];
+var seconds = 120;
 
 function getRandomArray() {
     let random = Math.floor(Math.random() * 3) + 1;
@@ -74,6 +75,7 @@ function firstGame() {
 
 function resetGame() {
     getRandomArray();
+    clearInterval(tI);
     for(var i=0; i < shipsArray.length; i++) {
         var innerArray = shipsArray[i];
         for(var j=0; j < innerArray.length; j++) {
@@ -90,8 +92,35 @@ function resetGame() {
         }
     }
     message.style.color = 'black';
-    message.innerText = 'Twoim zadaniem jest zatopić dwa dwumasztowce, trzy trójmasztowce i jeden czteromasztowiec. Powodzenia!';
+    message.innerText = 'Twoim zadaniem jest zatopić dwa dwumasztowce, trzy trójmasztowce i jeden czteromasztowiec. Masz na to 2 minuty.';
     hits = 0;
+    clicks = 0;
+    seconds = 120;
+    timerMessage.style.color = 'black';
+    timerMessage.innerText = 'Odliczanie rozpocznie się po pierwszym strzale. Powodzenia!';
+}
+
+function timer() {
+    let minutes = Math.round((seconds - 30)/60);
+    let remseconds = seconds % 60;
+    if (remseconds < 10) {
+        timerMessage.innerHTML = minutes + ":0" + remseconds;
+    } else {
+        timerMessage.innerHTML = minutes + ":" + remseconds;
+    }
+    if (seconds < 10) {
+        timerMessage.style.color = "red";
+    }
+    if (seconds === 0) {
+        clearInterval(tI);
+        message.style.color = 'red';
+        message.innerText = 'Niestety, koniec czasu... Spróbujesz jeszcze raz?';
+        for (i=0; i<tds.length; i++) {
+            tds[i].style.backgroundColor = 'red';
+            tds[i].removeEventListener('click', onClick);
+        }
+    }
+    seconds--;
 }
 
 firstGame();
@@ -101,12 +130,15 @@ firstGame();
 var kaboom = document.getElementById('kaboom');
 var resBut = document.getElementById('reset');
 var message = document.getElementById('message');
-var rows = document.getElementsByTagName('tr')
+var rows = document.getElementsByTagName('tr');
+var timerMessage = document.getElementById('timer');
+var tds = document.getElementsByTagName('td');
 var hits = 0;
+var clicks = 0;
+var ti;
 
 //PODPIĘCIE FUNKCJI URUCHMIANEJ PO KLIKNIĘCIU W KOMÓRKĘ TABELI
 
-var tds = document.getElementsByTagName('td');
 for (var i=0; i<tds.length; i++) {
     tds[i].addEventListener('click', onClick);
 }
@@ -120,14 +152,6 @@ resBut.addEventListener('click', clickBut);
 //FUNKCJA AKTYWOWANA PO KLIKNIĘCIU
 
 function onClick() {
-    let td = this;
-    td.dataset.hit === 'true';
-    if (td.dataset.ship === 'true') {
-        td.innerText = 'X';
-        hits++;
-    } else {
-        td.innerText = '•';
-    }
 
     function highLightRow() {
         let tdsInRow = td.parentElement.children;
@@ -144,8 +168,22 @@ function onClick() {
     if (hits === 16) {
         message.innerText = 'Już tylko jedno trafienie dzieli Cię od wygranej!';
     } else {
-        message.innerText = 'Brakuje Ci jeszcze '+(17-hits)+' trafień do wygranej';
+        message.innerText = 'Brakuje Ci jeszcze '+(17-hits)+' trafień do wygranej...';
+    };
+
+    let td = this;
+    td.dataset.hit === 'true';
+    if (td.dataset.ship === 'true') {
+        td.innerText = 'X';
+        hits++;
+    } else {
+        td.innerText = '•';
     }
+
+    clicks = clicks+1;
+    if (clicks === 1) {
+        tI = setInterval(timer,1000);
+    };
 
     highLightRow();
 
@@ -161,6 +199,7 @@ function onClick() {
     //ZAKONCZENIE GRY
 
     if (hits === 17) {
+        clearInterval(tI);
         setTimeout(function() {
             for (i=0; i<tds.length; i++) {
                 tds[i].style.backgroundColor = '#99ffbb';
@@ -173,6 +212,7 @@ function onClick() {
             }
         },1000);
         message.style.color = 'green';
+        timerMessage.style.color = 'green';
         message.innerText = 'WYGRAŁEŚ! Zagrasz jeszcze raz?';
     }
     td.removeEventListener('click', onClick);
