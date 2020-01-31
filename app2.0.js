@@ -38,11 +38,11 @@ var shipsArray3 = [
 var html = '';
 var shipsArray = [];
 var seconds = 120;
-var kaboom = document.getElementById('kaboom');
-var resBut = document.getElementById('reset');
-var message = document.getElementById('message');
+var image = document.getElementsByClassName('image')[0];
+var resBut = document.getElementsByClassName('container__button--reset')[0];
+var message = document.getElementsByClassName('container__message--info')[0];
 var rows = document.getElementsByTagName('tr');
-var timerMessage = document.getElementById('timer2');
+var timerMessage = document.getElementsByClassName('container__message--timer')[0];
 var tds = document.getElementsByTagName('td');
 var hits = 0;
 var clicks = 0;
@@ -60,7 +60,7 @@ function getRandomArray() {
 }
 
 function firstGame() {
-    html += '<table id="battleships">';
+    html += '<table class="battleships">';
     html += '<tbody>';
     getRandomArray();
     for(var i=0; i < shipsArray.length; i++) {
@@ -187,7 +187,7 @@ function onClick() {
 
     //ANIMACJA
 
-    let cloned = kaboom.cloneNode();
+    let cloned = image.cloneNode();
     td.appendChild(cloned);
     cloned.style.display = 'block';
     setTimeout(function() {
@@ -215,26 +215,3 @@ function onClick() {
     }
     td.removeEventListener('click', onClick);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,12 +10,14 @@
     <title>Gra w statki</title>
 </head>
 <body>
-    <div class="buttonDiv">
-        <button id="reset">Nowa gra</button>
+    <div class="container">
+        <div class="container__button">
+            <button class="container__button container__button--reset">Nowa gra</button>
+        </div>
+        <div class="container__message container__message--info">Twoim zadaniem jest zatopić dwa dwumasztowce, trzy trójmasztowce i jeden czteromasztowiec. <br>Masz na to 2 minuty.</div>
+        <div class="container__message container__message--timer">Odliczanie rozpocznie się po pierwszym strzale. Powodzenia!</div>
     </div>
-    <div id="message">Twoim zadaniem jest zatopić dwa dwumasztowce, trzy trójmasztowce i jeden czteromasztowiec. <br>Masz na to 2 minuty.</div>
-    <div id="timer2">Odliczanie rozpocznie się po pierwszym strzale. Powodzenia!</div>
-    <img src="ColdTediousGrassspider-small.gif" alt="" style="display: none" id="kaboom">
+    <img class="image" src="ColdTediousGrassspider-small.gif" alt="" style="display: none">
     <script src="app2.0.js"></script>
 </body>
 </html>
